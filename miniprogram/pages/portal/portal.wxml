@@ -1,0 +1,4 @@
+<!--pages/portal/portal.wxml-->
+<button type="primary" bindtap="viewListButton">listView</button>
+<!-- <button type="primary" bindtap="mainButtonClick">主页</button> -->
+<button type="primary" bindtap="bButton">bButton</button>

@@ -1,0 +1,9 @@
+<!--pages/viewList.wxml-->
+<!-- <text>pages/viewList.wxml</text> -->
+<switch wx:for="{{objectArray}}" wx:key="unique" style="display: block;"> {{item.id}} </switch>
+<button bindtap="switch"> Switch </button>
+<button bindtap="addToFront"> Add to the front </button>
+
+<switch wx:for="{{numberArray}}" wx:key="*this" style="display: block;"> {{item}} </switch>
+<button bindtap="addNumberToFront"> Add to the front </button>
+<button bindtap="switch2">Switch</button>

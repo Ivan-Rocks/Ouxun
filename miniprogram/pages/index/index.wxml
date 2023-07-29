@@ -1,8 +1,8 @@
 <!--index.wxml-->
-<h1>张一凡</h1>
+<!-- <h1>张一凡</h1>
 <h1>陆柯言</h1>
 <h1>陈润林</h1>
-<h1>邢承陆</h1>
+<h1>邢承陆</h1> -->
 <view class="container">
 
   <!-- 用户 openid -->
@@ -36,6 +36,13 @@
       <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
     </view>
   </view>
+
+  <!-- 传送门 -->
+  <!-- <view class="uploader">
+    <navigator url="../portal/portal" open-type="navigate" class="uploader-text">
+      <text>传送门</text>
+    </navigator>
+  </view> -->
 
 
   <!-- 上传图片 -->
