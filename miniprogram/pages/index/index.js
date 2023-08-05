@@ -32,16 +32,35 @@ Page({
           success: res => {
             console.log('[云函数] [login] user openid: ', res.result.openid)
             app.globalData.openid = res.result.openid
-            wx.switchTab({ //跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面 就是首页  
-              //用户授权成功后就要跳转到首页导航栏
-              url: "/pages/items/items",
-            }); // 进入到首页后，出现消息提示窗，提示用户:'欢迎使用本小程序'的提示语
+            db.collection('users').where({_openid:res.result.openid}).get({
+              success:function(res) {
+                if (res.data.length==0) {
+                  console.log("新建一个用户")
+                  db.collection('users').add({
+                    data: {
+                      openid: app.globalData.openid
+                    }
+                  }).then(res => {
+                    console.log('添加成功', res)
+                  })
+                  .catch(err => {
+                    console.log('添加失败', err)
+                  })
+                } else {
+                  console.log("存在这个用户")
+                }
+                console.log(res.data)
+                wx.switchTab({ //跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面 就是首页  
+                  //用户授权成功后就要跳转到首页导航栏
+                  url: "/pages/items/items",
+                }); // 进入到首页后，出现消息提示窗，提示用户:'欢迎使用本小程序'的提示语
+              },
+            });
           },
           fail: err => {
             console.error('[云函数] [login] 调用失败', err)
           }
         })
-        console.log("hi")
         wx.setStorageSync('userInfo', res.userInfo); // userInfo 本地缓存指定的 key  res.userInfo 需要存储的数据
         // wx.setStorageSync('userInfo', res.userInfo); 第一个参数为本地缓存指定的 key 
         // 第二个参数为 res.userInfo 为要需要存储的数据信息 这里要把 res.userInfo 获取到的用户信息列表，存储在userInfo 列表里面
