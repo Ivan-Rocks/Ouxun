@@ -49,7 +49,7 @@ Page({
                 } else {
                   console.log("存在这个用户")
                 }
-                console.log(res.data)
+                //console.log(res.data)
                 wx.switchTab({ //跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面 就是首页  
                   //用户授权成功后就要跳转到首页导航栏
                   url: "/pages/items/items",
